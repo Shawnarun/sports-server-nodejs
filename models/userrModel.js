@@ -1,3 +1,4 @@
+const { number } = require('joi');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -24,6 +25,10 @@ const userSchema = new mongoose.Schema({
     dob: {
         type: String,
         required: true
+    },
+     otp:{
+        type: Number,
+        required: false
     },
     email: {
         type: String,
