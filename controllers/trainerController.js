@@ -1,12 +1,10 @@
-const Joi = require('joi');
-const trainer = require('../models/trainerrModel');
+const Trainer = require('../models/trainerModel');
 const factory = require('./handlerFactory');
 
 
-
-
-
-exports.create = factory.createOne(trainer);
-exports.get = factory.getOne(trainer);
-exports.delete = factory.deleteOne(trainer);
-exports.update = factory.updateOne(trainer);
+exports.get = factory.getOne(Trainer);
+exports.getAll = factory.getAll(Trainer);
+exports.getPagination = factory.getAllPagination(Trainer);
+exports.delete = factory.deleteOne(Trainer);
+exports.update = factory.updateOne(Trainer);
+exports.create =  factory.createOne(Trainer);

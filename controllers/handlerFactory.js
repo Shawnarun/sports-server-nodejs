@@ -82,4 +82,58 @@ exports.updateOne = (Model) => catchAsync(async (req, res, next) => {
         message: `Successfully updated document`,
         data: doc
     });
+
+
+    
+});
+
+
+exports.getAll = (Model) => catchAsync(async (req, res, next) => {
+    const docs = await Model.find();
+
+    res.status(200).json({
+        status: 'success',
+        code: 200,
+        message: 'Successfully retrieved all documents',
+        data: docs
+    });
+});
+
+exports.getAllPagination = (Model) => catchAsync(async (req, res, next) => {
+    // Pagination options
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    // Query to get documents with pagination
+    const docs = await Model.find()
+        .skip(skip)
+        .limit(limit);
+
+    // Count total number of documents
+    const totalCount = await Model.countDocuments();
+
+    // Calculate total pages
+    const totalPages = Math.ceil(totalCount / limit);
+
+    // Determine if there are more pages
+    const hasNextPage = page < totalPages;
+
+    // Determine if there are previous pages
+    const hasPrevPage = page > 1;
+
+    res.status(200).json({
+        status: 'success',
+        code: 200,
+        message: 'Successfully retrieved documents',
+        data: {
+            totalDocs: totalCount,
+            totalPages,
+            currentPage: page,
+            docsPerPage: limit,
+            hasNextPage,
+            hasPrevPage,
+            data: docs
+        }
+    });
 });

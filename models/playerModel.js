@@ -1,53 +1,77 @@
+
+const { number } = require('joi');
 const mongoose = require('mongoose');
 
-
-
-const dashboardSchema = new mongoose.Schema({
-    myInfo: String,
-    playerRanking: String,
-    matchMaking: String,
-    pastTeamsAndPositions: String,
-    playerStats: String,
-    tournamentDetails: String
-});
-
-const playerStatsSchema = new mongoose.Schema({
-    reportedInjuries: String,
-    gamesLost: Number,
-    gamesMissed: Number,
-    practicesMissed: Number,
-    progressStats: String,
-    progressInformation: String
-});
-
-const teamsDetailsSchema = new mongoose.Schema({
-    teamName: String,
-    position: String,
-    teamRank: Number,
-    league: String,
-    basketsIn: Number,
-    threePointers: Number
-});
-
-// Define the main schema for the player model
 const playerSchema = new mongoose.Schema({
-    dashboard: dashboardSchema,
-    playerStats: playerStatsSchema,
-    tournaments: {
-        allTournamentsDetailsTable: String
+    playerName: {
+        type: String,
+        required: true
     },
-    teams: {
-        allTeamsDetails: [teamsDetailsSchema]
+    age: {
+        type: Number,
+        required: true
     },
-    paymentHistory: {
-        duePayments: String,
-        completePayment: String
+    dob: {
+        type: String,
+        required: true
     },
-    schedule: {
-        scheduleTableCalendar: String
+    phoneNumber: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    emergencyContact: {
+        type: String,
+        required: true
+    },
+     height:{
+        type: Number,
+        required: false
+    },
+    weight: {
+        type: Number,
+        required: true
+    },
+    playerRanking: {
+        type: Number,
+        required: true
+    },
+    MatchRanking: {
+        type: Number,
+        required: true
+    },
+    reportInjuries: {
+        type: Number,
+        required: true
+    },
+    gameLost: {
+        type: Number,
+        required: true
+    },
+    gameMissed: {
+        type: Number,
+        required: true
+    },
+    practiceMissed: {
+        type: Number,
+        required: true
+    },
+    attended: {
+        type: Number,
+        required: true
+    },
+    duePayments: {
+        type: Number,
+        required: true
+    },
+    completePayments: {
+        type: Number,
+        required: true
     }
 });
-
 
 const Player = mongoose.model('Player', playerSchema);
 
