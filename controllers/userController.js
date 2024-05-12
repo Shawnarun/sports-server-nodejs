@@ -68,33 +68,50 @@ async function  forgotPassword(req, res){
     }
   };
 
-async function resetPassword(req, res) {
-    const { email, otp, newPassword } = req.body;
+  async function submitOtp(req, res) {
+    const { email, otp } = req.body;
     try {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (user.otp !== otp) {
+            return res.status(400).json({ error: 'Invalid OTP' });
+        }
+
+        res.json({ success: true });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
+    }
+}
+
+async function resetPassword(req, res) {
+  const { email, newPassword } = req.body;
+  try {
       const user = await User.findOne({ email });
-  
+
       if (!user) {
-        return res.status(404).json({ error: 'User not found' });
+          return res.status(404).json({ error: 'User not found' });
       }
-  
-      if (user.otp !== otp) {
-        return res.status(400).json({ error: 'Invalid OTP' });
-      }
-  
+
       // Update password and clear OTP
       user.password = newPassword;
       user.otp = undefined;
       await user.save();
-  
+
       res.json({ message: 'Password reset successfully' });
-    } catch (error) {
+  } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
-    }
-  };
+  }
+}
 
 exports.login = login;
 exports.resetPassword = resetPassword;
+exports.submitOtp = submitOtp;
 exports.get = factory.getOne(User);
 exports.delete = factory.deleteOne(User);
 exports.update = factory.updateOne(User);
