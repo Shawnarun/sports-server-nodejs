@@ -65,16 +65,18 @@ exports.updateOne = (Model) => catchAsync(async (req, res, next) => {
 
  
 
-    const doc = await Model.findByIdAndUpdate(id, validatedData, {
-        new: true,
-        runValidators: true
-    });
+   // Extract only the fields that are allowed to be updated
+   const updateFields = req.body;
 
+   // Update the document using findByIdAndUpdate
+   const doc = await Model.findByIdAndUpdate(id, updateFields, {
+       new: true, // Return the modified document rather than the original
+       runValidators: true // Run validators for the updated fields
+   });
 
-    if (!doc) {
-        return next(new AppError('No document found with that id', 404))
-    };
-
+   if (!doc) {
+       return next(new AppError('No document found with that id', 404));
+   }
 
     res.status(200).json({
         status: 'success',
