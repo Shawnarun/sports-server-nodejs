@@ -5,27 +5,27 @@ const mongoose = require('mongoose');
 const playerSchema = new mongoose.Schema({
     playerName: {
         type: String,
-        required: true
+        required: false
     },
     age: {
         type: Number,
-        required: true
+        required: false
     },
     dob: {
         type: String,
-        required: true
+        required: false
     },
     phoneNumber: {
         type: String,
-        required: true
+        required: false
     },
     email: {
         type: String,
-        required: true
+        required: false
     },
     emergencyContact: {
         type: String,
-        required: true
+        required: false
     },
      height:{
         type: Number,
@@ -33,43 +33,43 @@ const playerSchema = new mongoose.Schema({
     },
     weight: {
         type: Number,
-        required: true
+        required: false
     },
     playerRanking: {
         type: Number,
-        required: true
+        required: false
     },
     MatchRanking: {
         type: Number,
-        required: true
+        required: false
     },
     reportInjuries: {
         type: Number,
-        required: true
+        required: false
     },
     gameLost: {
         type: Number,
-        required: true
+        required: false
     },
     gameMissed: {
         type: Number,
-        required: true
+        required: false
     },
     practiceMissed: {
         type: Number,
-        required: true
+        required: false
     },
     attended: {
         type: Number,
-        required: true
+        required: false
     },
     duePayments: {
         type: Number,
-        required: true
+        required: false
     },
     completePayments: {
         type: Number,
-        required: true
+        required: false
     }
 });
 
