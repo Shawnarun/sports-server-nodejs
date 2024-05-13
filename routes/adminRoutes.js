@@ -14,6 +14,9 @@ router.get('/find-all-pagination', adminController.getPagination);
 router.delete('/delete/:id', adminController.delete);
 router.patch('/update/:id', adminController.update);
 router.post('/login', adminController.adminLogin);
+router.post('/forgot-password',adminController.forgotPassword);
+router.post('/reset-password',adminController.resetPassword);
+router.post('/submit-otp',adminController.submitOtp);
 
 
 
