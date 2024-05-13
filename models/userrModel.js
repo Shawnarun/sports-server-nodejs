@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     },
     userType: {
         type: String,
-        enum: ['PLAYER', 'RANKING', 'ADMIN'],
+        enum: ['PLAYER', 'TRAINER', 'ADMIN'],
         required: true
     }
 });
