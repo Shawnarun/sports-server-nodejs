@@ -1,5 +1,6 @@
 const Admin = require('../models/adminModel');
 const factory = require('./handlerFactory');
+const jwt = require('jsonwebtoken');
 
 
 async function adminLogin(req, res) {
