@@ -1,6 +1,15 @@
-
-const { number } = require('joi');
 const mongoose = require('mongoose');
+
+const emergencyContactSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    phoneNumber: {
+        type: String,
+        required: true
+    }
+});
 
 const trainerSchema = new mongoose.Schema({
     trainerName: {
@@ -12,7 +21,7 @@ const trainerSchema = new mongoose.Schema({
         required: true
     },
     dob: {
-        type: String,
+        type: Date,
         required: true
     },
     phoneNumber: {
@@ -24,11 +33,11 @@ const trainerSchema = new mongoose.Schema({
         required: true
     },
     emergencyContact: {
-        type: String,
+        type: emergencyContactSchema, // Embed the emergencyContact schema
         required: true
     },
     joinedDate: {
-        type: String,
+        type: Date,
         required: true
     },
     teamsWon: {

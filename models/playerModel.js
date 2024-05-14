@@ -70,6 +70,14 @@ const playerSchema = new mongoose.Schema({
     completePayments: {
         type: Number,
         required: false
+    } ,
+     rightHandDribbles: {
+        type: Number,
+        required: false
+    },
+    layups: {
+        type: Number,
+        required: false
     }
 });
 
