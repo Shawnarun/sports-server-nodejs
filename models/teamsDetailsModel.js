@@ -7,6 +7,10 @@
             type: String,
             required: true
         },
+        position: {
+            type: Number,
+            required: false
+        },
         teamRank: {
             type: Number,
             required: true
