@@ -14,6 +14,7 @@ const userRoutes=require('./routes/userRoutes')
 const teamsDetailsRoutes=require('./routes/teamDetailsRoutes')
 const tournamentRoutes=require('./routes/tournamentRoutes')
 const adminRoutes=require('./routes/adminRoutes')
+const playerInformationRoutes=require('./routes/playerInformationRoutes')
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use('/api/v1/users',userRoutes);
 app.use('/api/v1/team-details',teamsDetailsRoutes);
 app.use('/api/v1/tournaments',tournamentRoutes);
 app.use('/api/v1/admin',adminRoutes);
+app.use('/api/v1/player-information',playerInformationRoutes);
 
 
 app.all('*', (req, res, next) => {
