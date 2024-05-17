@@ -63,12 +63,8 @@ exports.getOne = Model => catchAsync(async (req, res, next) => {
 exports.updateOne = (Model) => catchAsync(async (req, res, next) => {
     const { id } = req.params;
 
- 
 
-   // Extract only the fields that are allowed to be updated
    const updateFields = req.body;
-
-   // Update the document using findByIdAndUpdate
    const doc = await Model.findByIdAndUpdate(id, updateFields, {
        new: true, // Return the modified document rather than the original
        runValidators: true // Run validators for the updated fields

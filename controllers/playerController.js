@@ -2,6 +2,7 @@ const Player = require('../models/playerModel');
 const factory = require('./handlerFactory');
 
 
+
 exports.get = factory.getOne(Player);
 exports.getAll = factory.getAll(Player);
 exports.getPagination = factory.getAllPagination(Player);

@@ -8,7 +8,7 @@
             required: true
         },
         position: {
-            type: Number,
+            type: String,
             required: false
         },
         teamRank: {
@@ -30,6 +30,11 @@
         freeThrows: {
             type: Number,
             required: true
+        },
+        teamLogo: {
+            type: String,
+            required: false,
+            default: ""
         }
     });
 

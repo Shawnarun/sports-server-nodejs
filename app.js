@@ -7,6 +7,8 @@ const xssProtection = require('x-xss-protection');
 const cors = require('cors')
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+const bodyParser = require('body-parser');
+
 
 const playerRoutes=require('./routes/playerRoutes')
 const trainerRoutes=require('./routes/trainerRoutes')
@@ -17,6 +19,8 @@ const adminRoutes=require('./routes/adminRoutes')
 const playerInformationRoutes=require('./routes/playerInformationRoutes')
 
 const app = express();
+app.use(bodyParser.json());
+
 
 app.use(helmet());
 
