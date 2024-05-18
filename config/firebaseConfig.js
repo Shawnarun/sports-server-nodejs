@@ -1,15 +1,15 @@
-
+const dotenv = require('dotenv');
 const { initializeApp } = require("firebase/app");
 const { getAuth } = require("firebase/auth");
 
+dotenv.config();
 const firebaseConfig = {
-  apiKey: "AIzaSyDgi7EVhv5eB_p35lgPn8ChDT_4g7W03Pg",
-  authDomain: "sports-app-ab321.firebaseapp.com",
-  projectId: "sports-app-ab321",
-  storageBucket: "sports-app-ab321.appspot.com",
-  messagingSenderId: "829744572906",
-  appId: "1:829744572906:web:97758b96b4058c1b592a93",
-  measurementId: "G-0PDMBL83L0"
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
 };
 
 const app = initializeApp(firebaseConfig);

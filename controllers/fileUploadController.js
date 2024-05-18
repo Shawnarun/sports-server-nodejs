@@ -1,56 +1,45 @@
-const { getStorage, ref, uploadBytesResumable } = require('firebase/storage');
+const { getStorage, ref, uploadBytesResumable, getDownloadURL } = require('firebase/storage');
 const { signInWithEmailAndPassword } = require('firebase/auth');
 const { auth } = require('../config/firebaseConfig');
+const dotenv = require('dotenv');
 
+dotenv.config();
 
 async function uploadImage(file, quantity) {
     const storageFB = getStorage();
 
-    await signInWithEmailAndPassword(auth, "shawnarun19@gmail.com", "admin123")
+    await signInWithEmailAndPassword(auth, process.env.FIREBASE_USER, process.env.FIREBASE_AUTH);
 
     if (quantity === 'single') {
         const dateTime = Date.now();
-        const fileName = `images/${dateTime}`
-        const storageRef = ref(storageFB, fileName)
+        const fileName = `images/${dateTime}`;
+        const storageRef = ref(storageFB, fileName);
         const metadata = {
             contentType: file.type,
-        }
+        };
+
         await uploadBytesResumable(storageRef, file.buffer, metadata);
-        return fileName
+
+        // Get the download URL for the uploaded file
+        const downloadURL = await getDownloadURL(storageRef);
+
+        return downloadURL;
     }
 
-    if (quantity === 'multiple') {
-        for(let i=0; i < file.images.length; i++) {
-            const dateTime = Date.now();
-            const fileName = `images/${dateTime}`
-            const storageRef = ref(storageFB, fileName)
-            const metadata = {
-                contentType: file.images[i].mimetype,
-            }
-
-            const saveImage = await Image.create({imageUrl: fileName});
-            file.item.imageId.push({_id: saveImage._id});
-            await file.item.save();
-
-            await uploadBytesResumable(storageRef, file.images[i].buffer, metadata);
-
-        }
-        return
-    }
-
+    // Modify the 'multiple' case similarly if needed
 }
-
 
 const singleUpload = async (req, res) => {
     const file = {
         type: req.file.mimetype,
         buffer: req.file.buffer,
     };
+
     try {
-        const buildImage = await uploadImage(file, 'single');
+        const imageURL = await uploadImage(file, 'single');
         res.send({
             status: 'SUCCESS',
-            imageName: buildImage,
+            imageURL: imageURL,
         });
     } catch (err) {
         console.log(err);
