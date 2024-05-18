@@ -17,6 +17,8 @@ const teamsDetailsRoutes=require('./routes/teamDetailsRoutes')
 const tournamentRoutes=require('./routes/tournamentRoutes')
 const adminRoutes=require('./routes/adminRoutes')
 const playerInformationRoutes=require('./routes/playerInformationRoutes')
+const uploadRoutes = require('./routes/fileUploadRoutes');
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -44,6 +46,7 @@ app.use('/api/v1/team-details',teamsDetailsRoutes);
 app.use('/api/v1/tournaments',tournamentRoutes);
 app.use('/api/v1/admin',adminRoutes);
 app.use('/api/v1/player-information',playerInformationRoutes);
+app.use('/api/v1/file-upload',uploadRoutes);
 
 
 app.all('*', (req, res, next) => {
