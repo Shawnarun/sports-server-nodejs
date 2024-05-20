@@ -112,6 +112,7 @@ async function resetPassword(req, res) {
 exports.login = login;
 exports.resetPassword = resetPassword;
 exports.submitOtp = submitOtp;
+exports.getAll = factory.getAll(User);
 exports.get = factory.getOne(User);
 exports.delete = factory.deleteOne(User);
 exports.update = factory.updateOne(User);

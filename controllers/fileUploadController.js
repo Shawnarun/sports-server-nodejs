@@ -19,14 +19,11 @@ async function uploadImage(file, quantity) {
         };
 
         await uploadBytesResumable(storageRef, file.buffer, metadata);
-
-        // Get the download URL for the uploaded file
         const downloadURL = await getDownloadURL(storageRef);
 
         return downloadURL;
     }
 
-    // Modify the 'multiple' case similarly if needed
 }
 
 const singleUpload = async (req, res) => {
