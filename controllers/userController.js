@@ -20,9 +20,9 @@ async function login(req, res) {
       if (password !== user.password) {
           return res.status(401).json({ error: 'Invalid credentials' });
       }
-      // Assuming login is successful, create JWT token
-      const token = jwt.sign({ userId: user._id }, 'your_secret_key');
-      res.status(200).json({ message: 'Successful', code: 200, token });
+
+      // const token = jwt.sign({ userId: user._id }, 'your_secret_key');
+      res.status(200).json({ message: 'Successful', code: 200 ,user});
   } catch (error) {
       res.status(500).json({ error: error.message });
   }
